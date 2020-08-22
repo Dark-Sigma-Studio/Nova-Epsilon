@@ -65,8 +65,8 @@ public class Synth : PlayerRace.Race
 	{
 		display = ui.transform.Find("Text").GetComponent<Text>();
 
-		anodeMat = self.transform.Find("SynthBase").Find("Battery").Find("Anode").GetComponent<MeshRenderer>().material;
-		cathodeMat = self.transform.Find("SynthBase").Find("Battery").Find("Cathode").GetComponent<MeshRenderer>().material;
+		anodeMat = self.transform.Find("SynthBase").Find("Battery").Find("Anode").GetComponent<Renderer>().material;
+		cathodeMat = self.transform.Find("SynthBase").Find("Battery").Find("Cathode").GetComponent<Renderer>().material;
 
 		battery.volts = 12;
 
@@ -96,8 +96,8 @@ public class Synth : PlayerRace.Race
 
 		battery.energy -= power * Time.deltaTime;
 
-		anodeMat.color = Color.Lerp(new Color(0, 0, 1, 0), new Color(0, 0, 1, 1), (battery.Anode.concentration * 2) / (battery.Anode.concentration + 3));
-		cathodeMat.color = Color.Lerp(new Color(1, 0, 0, 0), new Color(1, 0, 0, 1), (battery.Cathode.concentration * 2) / (battery.Cathode.concentration + 3));
+		anodeMat.SetFloat("Molarity", battery.Anode.concentration);
+		cathodeMat.SetFloat("Molarity", battery.Cathode.concentration);
 
 		display.text = $"{battery.energy: 0}\nTime Remaining: {TimeSpan.FromSeconds(battery.energy / power).ToString(@"hh\:mm\:ss")}";
 	}

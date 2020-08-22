@@ -90,4 +90,5 @@ public class PlayerMovement : MonoBehaviour
 
         p.charcon.Move(p.vel * Time.deltaTime);
     }
+
 }

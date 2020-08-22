@@ -8,7 +8,7 @@ public class PlayerRace : MonoBehaviour
      Player should have the script on it
      */
 
-    public Race race;
+    public Race race = new Synth();
 
     public class Race
     {
@@ -26,7 +26,6 @@ public class PlayerRace : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        race = new Synth();
         race.ui = GetComponentInChildren<Canvas>();
         race.self = gameObject;
         race.Init();
